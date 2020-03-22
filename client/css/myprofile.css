@@ -1,0 +1,229 @@
+
+*{
+	margin: 0;
+	padding:0;
+	list-style: none;
+	text-decoration: none;
+
+}
+.sidebar{
+	position: fixed;
+	left:-250px;
+	width: 250px;
+	height: 100%;
+	background:#042331;
+	transition: all .5s ease;
+
+}
+
+.sidebar header{
+	font-size: 22px;
+	color:white;
+	text-align:center;
+	line-height: 70px;
+	background: #063146;
+	user-select: none;
+}
+
+.sidebar ul a{
+	display: block;
+	height:100%;
+	width:100%;
+	line-height:65px;
+	font-size: 20px;
+	color:white;
+	padding-left: 40px;
+	box-sizing: border-box;
+	border-top: 1px solid rgba(255,255,255,.1);
+	border-bottom: 1px solid black;
+}
+
+ul li:hover a{
+	padding-left: 50px;
+}
+
+.sidebar ul a i{
+	margin-right: 
+} 
+
+#check{
+	display:none;
+}
+label #btn, label #cancel{
+	position: absolute;
+	cursor: pointer;
+	background:#042331;
+	border-radius: 3px;
+}
+label #btn{
+	left: 40px;
+	top:25px;
+	font-size: 35px;
+	color:white;
+	padding:6px 12px;
+	transition: all .5s;
+
+}
+
+label #cancel{
+	z-index: 1111;
+	left: -195px;
+	top:17px;
+	font-size: 30px;
+	color:#0a5275;
+	padding:4px 9px;
+	transition: all .5s ease;
+}
+
+#check:checked ~ .sidebar{
+	left:0;
+}
+
+#check:checked ~label #btn{
+	left:250px;
+	opacity:0;
+	pointer-events: none;
+}
+#check:checked ~label #cancel{
+	left: 195px;
+}
+#check:checked ~section{
+	margin-left: 250px;
+}
+
+section {
+	background-image:url(../images/photo9.jpg);
+	background-position: center;
+	background-size: cover;
+	height:100vh;
+	transition: all .5s ease;
+}
+
+.logo{
+	text-align:center;
+	font-size:40px;
+	color:white;
+	margin-right:200px;
+}
+
+.about{
+   position: fixed;
+	right:0px;
+	width: 250px;
+	height: 400px;
+	background:none;
+
+}
+
+.textbox{
+    width:400px;
+    border-radius:10px;
+    font-size:20px;
+    margin:10px auto;
+
+}
+.enter{
+	padding:10px;
+	height:20px;
+	background:none;
+	border: 2px solid white;
+	color:white;
+	margin-top:20px;
+
+}
+
+.about .textbox input {
+    padding:10px;
+	height:20px;
+	width:40px;
+	background:none;
+	border: 2px solid white;
+	color:white;
+}
+.btn{
+    width:50px;
+    height:40px;
+    background:slateblue;
+    border-radius: 10px;
+    color:white;
+    padding:5px;
+    font-size:18px;
+    cursor: pointer;
+    margin:14px auto;
+    border:none;
+
+}
+.btn:hover{
+    background-color: darkblue;
+}
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+section .open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+section .form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+/* Add styles to the form container */
+section .form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+section .form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+section .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+section .form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+section .form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+section .form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}

@@ -1,0 +1,123 @@
+*{
+	margin:0;
+	padding:0;
+	font-family:sans-serif;
+}
+.main-container{
+	height:100vh;
+	background-image:url(../images/photo9.jpg);
+	background-position:center;
+	background-size:cover;
+	overflow-x:hidden;
+	position:relative;
+}
+.navbar{
+	display:flex;
+	padding:40px 120px;
+}
+.nav-logo p{
+	color:white;
+	font-size:50px;
+	margin-right:20px;
+	margin-top:20px;
+	
+}
+.nav-links{
+	flex:1;
+}
+.nav-links ul{
+	margin-top:20px;
+	margin-left:50px;
+	display:inlne;
+}
+
+.nav-links ul li{
+	list-style:none;
+	display:inline-block;
+	padding:8px 25px;
+}
+
+.nav-links ul a{
+	color:#fff;
+	text-decoration:none;
+	font-size:13px;
+}
+.nav-links ul li::after{
+	content:'';
+	width:0;
+	height:2px;
+	background:yellow;
+	display:block;
+	margin:auto;
+}
+.nav-links ul li:hover::after{
+	color:orange;
+}
+.search{
+	padding:10px;
+	height:20px;
+	background:none;
+	border: 2px solid white;
+	color:white;
+	margin-top:20px;	
+}
+
+.btn{
+	padding:10px 20px;
+	border:0;
+	background:yellow;
+	font-weight:bold;
+	cursor:pointer;
+	
+}
+.btn :hover{
+	
+	background:orange;
+	padding:30px 40px;
+}
+.nav-links .btn{
+	float:right;
+}
+.banner-title {
+	margin:80px 130px;
+	color:#fff;
+}
+.banner-title p{
+	font-size:64px;
+	margin-bottom:30px;
+}
+.banner-title span{
+	
+	color:yellow;
+}
+@media (max-width:700px){
+	.banner-title{
+		margin:80px 40px;
+	}
+	.banner-title p{
+		font-size:50px;
+	}
+	
+	.navbar{
+		padding:10px 30px;
+	}
+	.nav-links{
+		height:100vh;
+		width:200px;
+		padding-top:100px;
+		position:absolute;
+		text-align:left;
+		z-index:2;
+		
+	}
+	.nav-links ul a {
+		display:block;
+	}
+	.nav-links .btn{
+		float:none;
+		margin-left:25px;
+		margin-top:10px;
+	}
+}
+
+	

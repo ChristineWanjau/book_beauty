@@ -1,0 +1,63 @@
+<?php
+
+session_start();
+ 
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>home</title>
+	<link rel="stylesheet"href="css/home.css">
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+	<input type="checkbox"id="check">
+	<label for="check">
+		<i class="fas fa-bars" id="btn"></i>
+		<i class="fas fa-times" id="cancel"></i>
+	</label>
+	<div class="sidebar">
+		<header>Stylist</header>
+		<ul>
+			<li class="active"><a href="stylisthome.html"><i class="fas fa-qrcode"></i>My Profile</a><li>
+			<li><a href="service.html"><i class="fas fa-link"></i>Services</a><li>
+			<li><a href="#"><i class="fas fa-stream"></i>Appointments</a><li>
+		    <li><a href="#"><i class="fas fa-calendar-week"></i>Reviews</a><li>
+		    <li><a href="#"><i class="fas fa-question-circle"></i>About</a><li>
+		    <li><a href="#"><i class="fas fa-sliders-h"></i>Contact</a><li>
+		</ul>
+	</div>
+	<section>
+		<div class="logo">
+			<h1>MY PROFILE</h1>
+		</div>
+		<div class="about">
+			<form action="about.php" method="post" enctype="multipart/form-data">
+				<div class="textbox">
+				<input type="file" name="img[]" mutliple="multiple"/>
+			</div>
+				<div class="textbox">
+				<textarea name="description" ROWS="10" COLUMNS="20"></textarea>
+			</div>
+			<!-- 	<div class="textbox">
+				<input type="text" placeholder="location">
+			</div> -->
+				<div class="textbox">
+				<label>from:</label><br>
+				<input type="time" name="openingtime" placeholder="opening hours">
+			</div>
+			<div class="textbox">
+				<label>till:</label><br>
+				<input type="time" name="closingtime" placeholder="closing hours">
+			</div>
+           <input type="submit" name="submit">
+			</form>
+		</div>
+		<div class="insert image">
+			<p>insert image here</p>
+		</div>
+
+	</section>
+</body>
+</html>
