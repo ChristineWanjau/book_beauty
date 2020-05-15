@@ -1,0 +1,96 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+.topnav {
+  background-color:white;
+  overflow: hidden;
+  text-align: center;
+  font-size: 20px;
+  text-decoration: bold;
+  }
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,1.0);
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding:15px;
+  text-decoration: none;
+  font-size: 20px;
+  color:black;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a i{
+  padding-right:8px;
+  color:orange;
+}
+
+.sidenav a:hover {
+  color: grey;
+}
+.sidenav .user{
+  background-color: orange;
+  padding:20px;
+}
+.sidenav .user i{
+  font-size:50px;
+  color:grey;
+  padding-left:10px;
+}
+
+.sidenav p{
+  font-size:15px;
+  color:black;
+  padding-left:10px;
+
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+#services{
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width:68%;
+  padding-left:20px;
+}
+
+#services td, #services th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#services tr:nth-child(even){background-color: #f2f2f2;}
+
+#services tr:hover {background-color: #ddd;}
+
+#services th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:darkorange;
+  color: white;
+}

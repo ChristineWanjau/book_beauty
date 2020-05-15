@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Register</title>
+        <link rel="stylesheet" href="css/style3.css">
+    </head>
+    <body>
+	<div class="logo">
+	<p>REGISTER</p>
+	</div>
+        <div class="container">
+        <form action="register.php" method="POST">
+            <div class="textbox">
+            <input type="text" name="firstname" required="">
+            <label>FirstName</label>
+        </div>
+        <div class="textbox">
+            <input type="text" name="lastname" required="">
+            <label>LastName</label>
+        </div>
+        <div class="textbox">
+            <input type="text" name="email"  required="">
+            <label>Email</label>
+            </div>
+            <div class="textbox">
+            <input type="text" name="phone" required="">
+            <label>Phone</label>
+            </div>
+            <div class="textbox">
+            <input type="password" name="password" required="">
+            <label>Password</label>
+            </div>
+            <div class="textbox">
+            <input type="password" name="confirm" required="">
+            <label>Confirm Password</label>
+            </div>
+            <input class="btn"type="submit" value="register"><br>
+             <a class="b2" href="clientlogin.php">Already have an account?Login</a>
+        </form>
+        </div>
+    </body>
+</html>
