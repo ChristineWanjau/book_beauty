@@ -2,7 +2,6 @@
 
 declare(strict_types= 1);
 session_start();
-include_once 'class/stylistContr.php';
 include_once 'class/validation.class.php';
 
 $_SESSION['businessname'] = $_POST['businessname'];

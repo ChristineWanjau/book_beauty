@@ -6,11 +6,6 @@ session_start();
 include_once 'class/stylistvalidation.php';
 include_once 'class/dbh.class.php';
  
-if(isset($_SESSION['stylistid'])){
-
-	header("Location:stylisthome.php");
-}
-else{
 
 if(isset($_POST['login'])){
 $email = $_POST['email'];
@@ -35,7 +30,7 @@ else{
 	</script>";
 }
 }
-}
+
 
 
 ?>

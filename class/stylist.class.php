@@ -2,6 +2,19 @@
 include_once 'dbh.class.php';
 	
 class stylist extends dbh{
+
+	public function getEmailForValidation($stylistid){
+		$sql ="SELECT * FROM stylistdetails WHERE stylistid = ?";
+		$stmt =$this->connect()->prepare($sql);
+		$stmt->execute([$stylistid]);
+		$results = $stmt->fetchAll();
+		if(sizeof($results)>0){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
 	
 	public function getEmail($stylistid){
 		$sql ="SELECT * FROM stylistdetails WHERE stylistid = ?";
@@ -10,11 +23,18 @@ class stylist extends dbh{
 		$results = $stmt->fetchAll();
 		return $results;
 	}
-    public function setAbout($description,$openingtime,$closingtime,$stylistid){
-    	$sql = "INSERT INTO about(description,openingtime,closingtime,stylistid)VALUES(?,?,?,?)";
+    public function setAbout($openingtime,$closingtime,$stylistid){
+    	$sql = "INSERT INTO about(openingtime,closingtime,stylistid)VALUES(?,?,?)";
 		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$description,$openingtime,$closingtime,$stylistid]);
+		$stmt->execute([$openingtime,$closingtime,$stylistid]);
     }
+
+    public function setDescription($stylistid,$description){
+    	$sql = "INSERT INTO description(stylistid,description)VALUES(?,?)";
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->execute([$stylistid,$description]);
+    }
+    
 
      public function setImage($filename,$target_file,$stylistid){
     	$sql = "INSERT INTO img(name,image,stylistid)VALUES(?,?,?)";
@@ -45,20 +65,7 @@ class stylist extends dbh{
 		}
 	}
 
-	public function setService($services,$hours,$price,$filename,$target_file,$stylistid){
-		$sql = "INSERT INTO services(services,hours,price,image,image_name,stylistid)VALUES(?,?,?,?,?,?)";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$services,$hours,$price,$filename,$target_file,$stylistid]);
-	}
-
-	public function getService($stylistid){
-		$sql ="SELECT * FROM services WHERE stylistid = ?";
-		$stmt =$this->connect()->prepare($sql);
-		$stmt->execute([$stylistid]);
-		$results = $stmt->fetchAll();
-		return $results;	
-	}
-
+	
 	 public function getAbout($stylistid){
 		$sql ="SELECT * FROM about WHERE stylistid = ?";
 		$stmt =$this->connect()->prepare($sql);
@@ -66,13 +73,52 @@ class stylist extends dbh{
 		$results = $stmt->fetchAll();
 		return $results;	
 	}
+	 public function getDescription($stylistid){
+		$sql ="SELECT * FROM description WHERE stylistid = ?";
+		$stmt =$this->connect()->prepare($sql);
+		$stmt->execute([$stylistid]);
+		$results = $stmt->fetchAll();
+		return $results;	
+	}
 
+
+	    public function getImageForStylist($stylistid){
+		$sql = "SELECT name FROM img WHERE stylistid =  ? LIMIT 1";
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->execute([$stylistid]);
+		$results = $stmt->fetchAll();
+		return $results;
+		}
+
+	
+	public function getSalonistByLocation($location){
+		$sql = "SELECT * FROM location WHERE street LIKE ? OR district LIKE ? OR city LIKE ? OR country LIKE ?";
+		$params = array("%$location%" ,"%$location%","%$location%","%$location%");
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->execute($params);
+		$results = $stmt->fetchAll();
+		return $results;
+
+	}
 	public function getImage($stylistid){
 		$sql = "SELECT * FROM img WHERE stylistid = ?";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute([$stylistid]);
 		$results = $stmt->fetchAll();
 		return $results;
+
+	}
+
+	public function deleteImage($stylistid,$image){
+		$sql = "DELETE FROM img WHERE stylistid = ? AND name = ?";
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->execute([$stylistid,$image]);
+
+	}
+	public function deleteDescription($stylistid,$description){
+		$sql = "DELETE FROM description WHERE stylistid = ? AND description = ?";
+		$stmt = $this->connect()->prepare($sql);
+		$stmt->execute([$stylistid,$description]);
 
 	}
 	public function getLocation($stylistid){
@@ -120,6 +166,27 @@ class stylist extends dbh{
 		}
 	}
 
+	  public function updateOpeningTime($stylistid,$openingtime){
+		$sql = "UPDATE about SET openingtime = ? WHERE stylistid = ?";
+		$stmt = $this->connect()->prepare($sql);
+		if($stmt->execute([$openingtime,$stylistid])){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	 public function updateClosingTime($stylistid,$closingtime){
+		$sql = "UPDATE about SET closingtime = ? WHERE stylistid = ?";
+		$stmt = $this->connect()->prepare($sql);
+		if($stmt->execute([$closingtime,$stylistid])){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
 	public function getEvent($stylistid){
 		$sql = "SELECT * FROM events WHERE stylistid = ?";
 		$stmt = $this->connect()->prepare($sql);
@@ -129,62 +196,15 @@ class stylist extends dbh{
 
 	}
 
-	public function getAppointment($stylistid){
-		$sql = "SELECT * FROM appointment WHERE stylistid = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$stylistid]);
-		$results = $stmt->fetchAll();
-		return $results;
 
-	}
 
-	public function deleteService($stylistid,$service){
-		$sql = "DELETE FROM services WHERE stylistid = ? AND services =?";
-		$stmt = $this->connect()->prepare($sql);
-		if($stmt->execute([$stylistid,$service])){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
 
-	public function serviceExists($service){
-		$sql = "SELECT * FROM serviceoffered WHERE service = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$service]);
-		if($stmt->fetchAll()){
-			return true;
-		}
-		else 
-		{
-			return false;
-		}
-		
 
-	}
-	public function newService($service){
-		$sql = "INSERT INTO serviceoffered(service)VALUES(?)";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$service]);
-	}
-
-	public function updateService($price,$hours,$service,$stylistid){
-		$sql ="UPDATE services SET price = ? , hours = ? WHERE services = ? AND stylistid = ?";
-		$stmt = $this->connect()->prepare($sql);
-		if($stmt->execute([$price,$hours,$service,$stylistid])){
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	public function getLocations($lat,$lat1,$lng,$lng1){
-		$sql ="SELECT * FROM location WHERE latitude = BETWEEN ? AND ? AND longitude = BETWEEN ? AND ?";
+	
+	public function getLocations($lat1,$lat2,$lng1,$lng2){
+		$sql ="SELECT * FROM location WHERE latitude BETWEEN ? AND ? AND longitude BETWEEN ? AND ?";
 		$stmt =$this->connect()->prepare($sql);
-		$stmt->execute([$lat,$lat1,$lng,$lng1]);
+		$stmt->execute([$lat1,$lat2,$lng1,$lng2]);
 		$results = $stmt->fetchAll();
 		return $results;
 	}

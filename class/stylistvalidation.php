@@ -2,12 +2,13 @@
 
 include_once 'stylist.class.php';
 
-class stylistvalidation extends stylist{
+class stylistvalidation{
 	
    public function signupValidation($email,$password,$confirm)
-   {
+   {    
+   	   $style = new stylist();
 	   $validstylist= true;
-	   if(stylist::getEmail($email)){
+	   if($style->getEmailforValidation($email)){
 		   echo"<script>
 		   alert('email already has an account');
 		   window.location.href='stylistregister.php';

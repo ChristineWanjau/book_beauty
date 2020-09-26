@@ -1,6 +1,6 @@
 <?php
 
-include_once 'class/stylist.class.php';
+include_once 'class/service.class.php';
 
 session_start();
 if(isset($_SESSION['stylistid'])){
@@ -13,10 +13,9 @@ if(isset($_SESSION['stylistid'])){
 	<title>home</title>
 	<link rel="stylesheet"href="css/home.css">
    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet"href="modal/css/modals.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-   <script src="home.js"></script>
+  <script src="modal/js/modals.min.js" type="text/javascript"></script>
 </head>
 <body>
 	<input type="checkbox"id="check">
@@ -27,13 +26,12 @@ if(isset($_SESSION['stylistid'])){
 	<div class="sidebar">
 		<header>Stylist</header>
 		<ul>
-			<li><a href="stylisthome.php"><i class="fas fa-qrcode"></i>My Profile</a><li>
-			<li class="active"><a href="service.php"><i class="fas fa-link"></i>Services</a><li>
-			<li><a href="calendar2.php"><i class="far fa-calendar"></i>Calendar</a><li>
-			<li><a href="stylistappointments.php"><i class="fas fa-stream"></i>Appointments</a><li>
-		    <li><a href="#"><i class="fas fa-calendar-week"></i>Reviews</a><li>
-		    <li><a href="#"><i class="fas fa-question-circle"></i>About</a><li>
-		    <li><a href="#"><i class="fas fa-sliders-h"></i>Contact</a><li>
+		 <li><a href="stylisthome.php"><i class="fas fa-qrcode"></i>My Profile</a><li>
+      <li><a href="service.php"><i class="fas fa-link"></i>Services</a></li>
+      <li><a href="calendar2.php"><i class="far fa-calendar"></i>Calendar</a></li>
+      <li><a href="stylistappointments.php"><i class="fas fa-calendar"></i>Appointments</a></li>
+        <li><a href="clientreviews.php"><i class="fas fa-calendar-week"></i>Reviews</a></li>
+        <li><a href="logout.php"><i class="fas fa-arrow-left"></i>Log out</a></li>
 		</ul>
 	</div>
 	<section>
@@ -49,8 +47,9 @@ if(isset($_SESSION['stylistid'])){
          <th>Action</th>
          <?php
 
-         $stylist = new stylist();
-         $service = $stylist->getService($_SESSION['stylistid']);
+         $stylist = new service();
+         $service = $stylist->getServiceByStylist($_SESSION['stylistid']);
+         if(sizeof($service)>0){
          foreach($service as $services){
          ?>
          <tr><td><?php echo $services['services']; ?></td>
@@ -66,11 +65,12 @@ if(isset($_SESSION['stylistid'])){
               <!-- Modal content-->
               <div class="modal-content">
                 <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                 
                   <h4 class="modal-title">Update</h4>
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-              <form action="service.php" method="POST">
+              <form action="service2.php" method="POST">
             <div class="form-group">
               <label>Service:</label>
               <input type="text" name="service" value="<?php echo $services['services'];?>" required="" class="form-control">
@@ -88,9 +88,7 @@ if(isset($_SESSION['stylistid'])){
 
           </form>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+          
           
             </div>
           </div>
@@ -98,7 +96,10 @@ if(isset($_SESSION['stylistid'])){
          
           <?php
          }
-          
+        }else{
+
+          echo "<tr><td>Enter your services</td></tr>";
+        }
          ?>
           </table>
 		</div>
@@ -123,18 +124,7 @@ if(isset($_SESSION['stylistid'])){
 </html>
 <?php
 
-if(isset($_POST['updatebutton'])){
-	$service = $_POST['service'];
-	$hours = $_POST['hours'];
-	$price = $_POST['price'];
-	$stylistid = $_SESSION['stylistid'];
-	if($stylist->updateService($service,$hours,$price,$stylistid)){
-		echo "sucess";
 
-	}else{
-		echo "no success";
-	}
-}
 
 if(isset($_GET['deleteservice'])){
     $stylistid = $_SESSION['stylistid'];

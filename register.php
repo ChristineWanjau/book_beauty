@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types= 1);
-include_once 'class/clientContr.class.php';
+include_once 'class/client.class.php';
 include_once 'class/validation.class.php';
 
 $firstname = $_POST['firstname'];
@@ -13,7 +13,7 @@ $confirm = $_POST['confirm'];
 
     //Password hashing
 $validate = new validation();
-$insert = new clientContr();
+$insert = new client();
 if(!$validate->signupValidation($email,$password,$confirm)){
      echo"<script>
        alert('Unable to insert');
@@ -27,7 +27,7 @@ elseif(!$hashedpassword = password_hash($password, PASSWORD_DEFAULT)){
        window.location.href='register.html';
        </script>";
 }
-elseif(!$insert->createClient($firstname,$lastname,$email,$phone,$hashedpassword)){
+elseif(!$insert->setClient($firstname,$lastname,$email,$phone,$hashedpassword)){
   
    session_start();
    $_SESSION['clientemail'] = $email;

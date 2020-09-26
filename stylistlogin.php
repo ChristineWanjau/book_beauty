@@ -28,7 +28,7 @@
             }
             ?>
             <a href="forgotpassword.php">Forgot password?</a>
-            <p>Don't have an account already?</p><a href="index.php">Sign in</a>
+            <p>Don't have an account already?</p><a href="stylistregister.php">Sign in</a>
         </form>
         </div>
     </body>

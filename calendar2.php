@@ -79,12 +79,11 @@ if(isset($_SESSION['stylistid'])){
     <header>Stylist</header>
     <ul>
       <li><a href="stylisthome.php"><i class="fas fa-qrcode"></i>My Profile</a><li>
-      <li class="active"><a href="service.php"><i class="fas fa-link"></i>Services</a><li>
-      <li><a href="calendar2.php"><i class="far fa-calendar"></i>Calendar</a><li>
-      <li><a href="stylistappointments.php"><i class="fas fa-stream"></i>Appointments</a><li>
-        <li><a href="#"><i class="fas fa-calendar-week"></i>Reviews</a><li>
-        <li><a href="#"><i class="fas fa-question-circle"></i>About</a><li>
-        <li><a href="#"><i class="fas fa-sliders-h"></i>Contact</a><li>
+      <li><a href="service.php"><i class="fas fa-link"></i>Services</a></li>
+      <li><a href="calendar2.php"><i class="far fa-calendar"></i>Calendar</a></li>
+      <li><a href="stylistappointments.php"><i class="fas fa-calendar"></i>Appointments</a></li>
+        <li><a href="clientreviews.php"><i class="fas fa-calendar-week"></i>Reviews</a></li>
+        <li><a href="logout.php"><i class="fas fa-arrow-left"></i>Log out</a></li>
     </ul>
   </div>
   <section>

@@ -23,7 +23,7 @@ if(isset($_SESSION['stylistid'])){
 		<header><i class="fas fa-user-circle"></i>Stylist</header>
 		<ul>
 
-            <?php
+           <!--  <?php
             $names = new stylist();
             $name = $names->getEmail( $_SESSION['stylistid']);
              foreach($name as $salon){
@@ -33,14 +33,12 @@ if(isset($_SESSION['stylistid'])){
         	<?php
         }
   
-      ?>
+      ?> -->
             <li class="active"><a href="stylisthome.php"><i class="fas fa-qrcode"></i>My Profile</a><li>
 			<li><a href="service.php"><i class="fas fa-link"></i>Services</a></li>
-			<li><a href="calendar.php"><i class="far fa-calendar"></i>Calendar</a></li>
-			<li><a href="#"><i class="fas fa-calendar"></i>Appointments</a></li>
-		    <li><a href="#"><i class="fas fa-calendar-week"></i>Reviews</a></li>
-		    <li><a href="#"><i class="fas fa-question-circle"></i>About</a></li>
-		    <li><a href="#"><i class="fa fa-volume-control-phone"></i>Contact</a></li>
+			<li><a href="calendar2.php"><i class="far fa-calendar"></i>Calendar</a></li>
+			<li><a href="stylistappointments.php"><i class="fas fa-calendar"></i>Appointments</a></li>
+		    <li><a href="clientreviews.php"><i class="fas fa-calendar-week"></i>Reviews</a></li>
 		    <li><a href="logout.php"><i class="fas fa-arrow-left"></i>Log out</a></li>
 		</ul>
 	</div>
@@ -50,57 +48,34 @@ if(isset($_SESSION['stylistid'])){
 		</div>
 		<hr>
 
-        <div class="contain">
-        	 <div class ="profile">
-        <?php
-        $profile = new stylist();
-        $pic = $profile->getImage($_SESSION['stylistid']);
-        foreach ($pic as $images) {
-        	$imagesrc ="upload/".$images['name']; 
-        ?>
-          
-       <img src ="<?php echo $imagesrc;?>" width="700px" height="400px"><br> 
-       <?php
-        }
-        $results = $profile->getAbout($_SESSION['stylistid']);
-        foreach($results as $stylist){
-        	?>
-
-        	<p><?php echo $stylist['description']; ?></p>
-        	<?php
-        }
-        ?>
-
-        </div>
-
-        <div class="about">
+        <div class="profile_form">
+        	<a href="seeyourprofile.php" class="btn">See Your Profile</a>
 			
 			<form action="about.php" method="post" enctype="multipart/form-data">
-				<div class="textbox">
+				<div class="text">
 			    <label>Insert Image</label><br>
 				<input type="file" name="files[]" mutliple="multiple"/>
 			</div>
-				<div class="textbox">
+			<br>
+				<div class="text">
 				<label>Description</label><br>
-				<textarea name="description" ROWS="10" COLUMNS="20"></textarea>
+				<textarea name="description" ROWS="10"></textarea>
 			</div>
-				<div class="textbox">
-				<input type="text" placeholder="location">
-			</div>
-				<div class="textbox">
+			<br>
+				<div class="text">
 				<label>Opening hours:</label><br>
 				<input type="time" name="openingtime" placeholder="opening hours">
 			</div>
-			<div class="textbox">
+			<br>
+			<div class="text">
 				<label>Closing hour:</label><br>
 				<input type="time" name="closingtime" placeholder="closing hours">
 			</div>
+			<br>
            <input type="submit" class="btn"name="submit">
 			</form>
 		</div>
        
-		
-	</div>
 
 	</section>
 </body>

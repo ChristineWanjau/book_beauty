@@ -31,8 +31,20 @@
   font-family: sans-serif;
 }
 
+.review{
+  margin-top:50px;
+  width:400px;
+  float:left;
+  margin-left:40px;
+  text-align:center;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  font-size: 15px;
+  font-family: sans-serif;
+}
+
 .services{
-	margin-top:300px;
+  margin-top:400px;
   margin-left:30px;
   float:left;
 

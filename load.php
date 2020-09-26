@@ -1,5 +1,4 @@
 <?php
-session_start();
 include_once 'class/stylist.class.php';
 if(isset($_SESSION['stylistid'])){
      $data = array();

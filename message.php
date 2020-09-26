@@ -2,6 +2,7 @@
 
 include_once 'class/client.class.php';
 include_once 'class/stylist.class.php';
+include_once 'class/notifications.class.php';
 
 session_start();
 if(isset($_SESSION['clientemail'])){
@@ -11,34 +12,37 @@ if(isset($_SESSION['clientemail'])){
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet"href="css/sms.css">
+	<link rel="stylesheet"href="css/home.css">
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
   </head>
   <body>
-   	<div id="main">
-      <div class="topnav" id="myTopnav">
-              <div class="nav-logo">
-                <p>Book Beauty</p>
-              </div>
-</div>
-<hr>
-   <div id="mySidenav" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-     <div class="user">
-   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <i class="fas fa-user-circle"></i>
-    <p><?php echo $_SESSION['clientemail'];?></p>
-    </div>
-    <a href="clientappointments.php"><i class="fas fa-link"></i>Appointments</a>
-    <a href="message.php"><i class="far fa-calendar"></i>Messages</a>
-    <a href="review.php"><i class="fas fa-calendar-week"></i>Your Reviews</a>
-    <a href="home.php"><i class="fas fa-arrow-left"></i>Back to home page</a>
-</div>
+   	<input type="checkbox"id="check">
+  <label for="check">
+    <i class="fas fa-bars" id="btn"></i>
+    <i class="fas fa-times" id="cancel"></i>
+  </label>
+  <div class="sidebar">
+    <header>Stylist</header>
+    <ul>
+      <li><a href="clientappointments.php"><i class="fas fa-qrcode"></i>Your appointments</a><li>
+      <li class="active"><a href="message.php"><i class="fas fa-link"></i>Your messages</a><li>
+      <li><a href="stylistreview.php"><i class="far fa-calendar"></i>Your Reviews</a><li>
+      <li><a href="index.php"><i class="fas fa-stream"></i>Back to homepage</a><li>
 
-<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    </ul>
+  </div>
+
+</div>
+<section>
+  <div class="logo">
+      <h1>Your Messages</h1>
+    </div>
+      <hr>
     <?php
     $message = new client();
-    $results = $message->getNotifications($_SESSION['clientemail']);
+    $noti = new notifications();
+    $results = $noti->getNotifications($_SESSION['clientemail']);
+    if(sizeof($results)>0){
     foreach ($results as $sms) {
     	?>
    <div class="card">
@@ -57,8 +61,8 @@ if(isset($_SESSION['clientemail'])){
    	}
    	echo $sms['notification'];
    	?>
-   	<form action="" method='post'>
-    <input type="text" placeholder="Reply">
+   	<form action="send.php" method='post'>
+    <input type="text" placeholder="Reply" name="reply">
     <input type="submit" value="Send">
     </form>
     </div>
@@ -66,22 +70,21 @@ if(isset($_SESSION['clientemail'])){
     <br>
     <?php
     }
-    ?>  
-
+  }else{
+    ?>
+    <div class="card">
+   <div class="container">
+     <p>You have no notifications today</p>
+   </div>
+   </div>
+  <?php
+  }
+    
+  
+?>
 </div>
+</section>
 	</body>
-
-		<script>
-function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
-}
-</script>
 </html>
 <?php
 }

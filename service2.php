@@ -5,13 +5,13 @@ if(isset($_SESSION['stylistid'])){
 
   if(isset($_POST['submit'])){
 
-include_once 'class/stylist.class.php';
+include_once 'class/service.class.php';
 
 $service = $_POST['service'];
 $hours = $_POST['hours'];
 $price = $_POST['price'];
 
-$insert = new stylist();
+$insert = new service();
 $countfiles = count($_FILES['files']['name']);
    
    
@@ -51,6 +51,25 @@ $countfiles = count($_FILES['files']['name']);
 }
 }
 }
+
+if(isset($_POST['updatebutton'])){
+	include_once 'class/service.class.php';
+	$insert = new service();
+	$service = $_POST['service'];
+	$hours = $_POST['hours'];
+	$price = $_POST['price'];
+	$stylistid = $_SESSION['stylistid'];
+	if($insert->updateService($service,$hours,$price,$stylistid)){
+		echo "<script>
+    window.location.href='service.php';
+    </script>";
+
+	}else{
+		echo "<script>
+    window.location.href='service.php';
+    </script>";
+	}
+}
 }
 else
 {
@@ -59,5 +78,6 @@ else
 	window.location.href='stylistlogin.php';
 	</script>";
 }
+
 
 ?>

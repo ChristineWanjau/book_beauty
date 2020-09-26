@@ -9,14 +9,14 @@ class validation extends client{
 	   if(client::getEmail($email)){
 		   echo"<script>
 		   alert('email already has an account');
-		   window.location.href='index.php';
+		   window.location.href='clientlogin.php';
 		   </script>";
 		   $validclient = false;
 	   }
 	   elseif($password!==$confirm){
            echo"<script>
 		   alert('password mismatch');
-		   window.location.href='stylistregister3.php';
+		   window.location.href='register.html';
 		   </script>";
 		   $validclient = false;
 	   }

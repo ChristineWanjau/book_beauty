@@ -1,7 +1,7 @@
 <?php
 
 include_once 'class/stylist.class.php';
-include_once 'class/validation.class.php';
+include_once 'class/stylistvalidation.php';
 session_start();
 if(isset($_POST['submit'])){
 
@@ -18,6 +18,7 @@ $lng = $_POST['lng'];
 
 $inserted = new stylist();
 $inserted->setLocation($_SESSION['email'],$street,$district,$city,$postal,$country,$lat,$lng);
+
 }
 ?>
 
@@ -51,7 +52,7 @@ if(isset($_POST['done'])){
 $password = $_POST['password'];
 $confirm = $_POST['confirm'];
     
-$validate = new validation();
+$validate = new stylistvalidation();
 $insert = new stylist();
 if(!$validate->signupValidation($_SESSION['email'],$password,$confirm)){
      echo"<script>

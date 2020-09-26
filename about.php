@@ -39,7 +39,8 @@ if(isset($_POST['submit'])){
 		}
 		
   }
-	$insert->setAbout($description,$openingtime,$closingtime,$email);
+	$insert->setAbout($openingtime,$closingtime,$email);
+	$insert->setDescription($email,$description);
 	echo "<script>
 	window.location.href='stylisthome.php';
 	</script>";

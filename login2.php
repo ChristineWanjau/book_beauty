@@ -16,7 +16,7 @@ if($validate->loginValidation($email,$password)){
 	$_SESSION['clientemail'] = $email;
 	echo "
 	<script>
-	window.location.href='home.php';
+	window.location.href='index.php';
 	</script>";
 }
 else{

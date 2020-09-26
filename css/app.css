@@ -1,75 +1,105 @@
-body {
-  font-family: "Lato", sans-serif;
-}
-.topnav {
-  background-color:white;
-  overflow: hidden;
-  text-align: center;
-  font-size: 20px;
-  text-decoration: bold;
-  }
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: white;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,1.0);
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
 
-.sidenav a {
-  padding:15px;
+*{
+  margin: 0;
+  padding:0;
+  list-style: none;
   text-decoration: none;
-  font-size: 20px;
-  color:black;
+
+}
+.sidebar{
+  position: fixed;
+  left:-250px;
+  width: 250px;
+  height: 100%;
+  background:darkorange;
+  transition: all .5s ease;
+
+}
+
+.sidebar header{
+  font-size: 22px;
+  color:white;
+  text-decoration: bold;
+  text-align:center;
+  line-height: 70px;
+  background:darkorange;
+  user-select: none;
+}
+
+.sidebar ul a{
   display: block;
-  transition: 0.3s;
+  height:100%;
+  width:100%;
+  line-height:65px;
+  font-size: 15px;
+  color:white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(255,255,255,.1);
+
 }
 
-.sidenav a i{
-  padding-right:8px;
-  color:orange;
+ul li:hover a{
+  padding-left: 50px;
+  font-size: 20px;
 }
 
-.sidenav a:hover {
-  color: grey;
-}
-.sidenav .user{
-  background-color: orange;
+.sidebar ul a i{
   padding:20px;
-}
-.sidenav .user i{
-  font-size:50px;
-  color:grey;
-  padding-left:10px;
-}
+  color:white;
+  background-color:darkorange;
+} 
 
-.sidenav p{
-  font-size:15px;
-  color:black;
-  padding-left:10px;
-
+#check{
+  display:none;
 }
-
-.sidenav .closebtn {
+label #btn, label #cancel{
   position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  cursor: pointer;
+  background:white;
+  border-radius: 3px;
 }
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
+label #btn{
+  left: 40px;
+  font-size: 35px;
+  color:orange;
+  padding:6px 12px;
+  transition: all .5s;
+
 }
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  font-size: 30px;
+  color:orange;
+  background-color: darkorange;
+  padding:4px 9px;
+  transition: all .5s ease;
+}
+
+#check:checked ~ .sidebar{
+  left:0;
+}
+
+#check:checked ~label #btn{
+  left:250px;
+  opacity:0;
+  pointer-events: none;
+}
+#check:checked ~label #cancel{
+  left: 195px;
+}
+#check:checked ~section{
+  margin-left: 250px;
+}
+
+section {
+  
+  background-position: center;
+  background-size: cover;
+  height:100vh;
+  transition: all .5s ease;
 }
 #services{
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -93,4 +123,24 @@ body {
   text-align: left;
   background-color:darkorange;
   color: white;
+}
+
+.card {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,1.0);
+  transition: 0.3s;
+  background-color: white;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,1.5);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+.card.container input{
+  width:100%;
 }

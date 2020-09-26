@@ -12,8 +12,8 @@ class client extends dbh{
 		return $results;
 		
 	}
-	protected function setClient($firstname,$lastname,$email,$phone,$password){
-		$sql = "INSERT INTO client(first_name,last_name,email,phone,password)VALUES(?,?,?,?,?)";
+	public function setClient($firstname,$lastname,$email,$phone,$password){
+		$sql = "INSERT INTO client(first_name,last_name,clientemail,phone,password)VALUES(?,?,?,?,?)";
 		$stmt = $this->connect()->prepare($sql);
 		$stmt->execute([$firstname,$lastname,$email,$phone,$password]);
 	}
@@ -34,69 +34,34 @@ class client extends dbh{
 		return $results;
 		}
 
-	public function getServices($stylistid){
-		$sql = "SELECT * FROM services WHERE stylistid = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$stylistid]);
-		$results = $stmt->fetchAll();
-		return $results;
 
-	}
+	
 
-	public function setAppointment($apointmentname,$clientemail,$service,$date,$time,$appointmentstatus,$stylistid){
-		$sql = "INSERT INTO appointment(appointmentname,clientemail,service,date,time,appointmentstatus,stylistid)VALUES(?,?,?,?,?,?,?)";
+	  public function setEvent($title,$start,$end,$stylistid){
+		$sql = "INSERT INTO events(title,start,end,stylistid)VALUES(?,?,?,?)";
 		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$apointmentname,$clientemail,$service,$date,$time,$appointmentstatus,$stylistid]);
+		$stmt->execute([$title,$start,$end,$stylistid]);
 		if($stmt){
 			return true;
 		}
 		else{
 			return false;
 		}
+
 	}
 
-	public function getSalonistByService($service){
-		$sql = "SELECT * FROM services WHERE services = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$service]);
+		
+		 public function getCoords($stylistid){
+		$sql ="SELECT * FROM location WHERE stylistid = ?";
+		$stmt =$this->connect()->prepare($sql);
+		$stmt->execute([$stylistid]);
 		$results = $stmt->fetchAll();
-		return $results;
-
-	}
-	public function getServicesOffered(){
-		$sql = "SELECT * FROM serviceoffered";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute();
-		$results = $stmt->fetchAll();
-		return $results;
-
-	}
-     
-     public function getAppointments($email){
-		$sql = "SELECT * FROM appointment WHERE clientemail = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$email]);
-		$results = $stmt->fetchAll();
-		return $results;
+		return $results;	
+	
 
 	}
 
-	 public function getNumberOfsms($email){
-		$sql = "SELECT COUNT(notification) FROM client_notifications WHERE clientemail = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$email]);
-		$results = $stmt->fetchAll();
-		return $results;
 
-	}
 
-	public function getNotifications($email){
-		$sql = "SELECT * FROM client_notifications WHERE clientemail = ?";
-		$stmt = $this->connect()->prepare($sql);
-		$stmt->execute([$email]);
-		$results = $stmt->fetchAll();
-		return $results;
-
-	}
 	}
 ?>
