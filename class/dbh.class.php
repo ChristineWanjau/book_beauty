@@ -2,10 +2,10 @@
 
 class dbh{
 	
-	private $host ="localhost";
-	private $user ="root";
-	private $pwd ="";
-	private $dbname="book_beauty";
+	private $host ="us-cdbr-east-02.cleardb.com";
+	private $user ="b88a372c6c809a";
+	private $pwd ="b0beb5d3";
+	private $dbname="heroku_321bbbaa2f484f8";
  
 
 	protected function connect(){
